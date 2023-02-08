@@ -16,6 +16,7 @@ reddit = praw.Reddit(
   user_agent="Tigerr discord bot. /u/BruhWhatsThis, iTiger#1476"
 )
 
+
 def countForRadix(data, placeValue):
     
   count = [0] * 10
