@@ -342,8 +342,9 @@ def trivia(message):
     for u in users:
       if c < 10:
         send += str(c+1) + ". "+ users[c] + ": " + str(rates[c]) + "%\n"
+      else:
+        return send
       c+=1
-    return send
   else:
     if user["difficulty"] == "":
       return "You do not have any question to answer"

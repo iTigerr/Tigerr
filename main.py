@@ -21,6 +21,7 @@ intents = discord.Intents.default()
 intents.typing = False
 intents.presences = False
 intents.members = True
+intents.message_content = True
 
 client = discord.Client(intents = intents)
 
@@ -42,11 +43,16 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
+
+  if type(message) == discord.PartialMessage:
+    message = await message.channel.fetch_message(message.id)
+  
   if message.author == client.user:
     return
 
   msg = message.content
   nsfw = message.channel.is_nsfw()
+
 
   if msg.startswith("T!ping"):
     try:
@@ -82,6 +88,16 @@ async def on_message(message):
         emb = discord.Embed(colour=MAIN)
   
       emb.set_image(url=x[0])
+      await message.channel.send(embed=emb)
+    except:
+      await error(message)
+
+  if msg.startswith("T!neko"):
+    try:
+      n = str(random.randint(1,913))
+      n = ("0"*(4-len(n))) + n
+      emb = discord.Embed(title=str(message.author), colour=MAIN)
+      emb.set_image(url=f"https://nekos.best/api/v2/neko/{n}.png")
       await message.channel.send(embed=emb)
     except:
       await error(message)
