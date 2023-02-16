@@ -28,6 +28,7 @@ client = discord.Client(intents = intents)
 async def error(message):
   emb = discord.Embed(description="Incorrect command format or an error occurred.", colour=RED)
   emb.set_image(url="https://cdn.discordapp.com/attachments/1023323171144872057/1058160662544654387/D31en26T471bAAAAAElFTkSuQmCC.png")
+  
   await message.channel.send(embed=emb)
 
 @client.event
@@ -186,6 +187,16 @@ async def on_message(message):
       await message.channel.send(embed=emb)
     except:
       await error(message)
+
+  if msg.startswith("T!http "):
+    #try:
+    code = msg.split("T!http ")[1]
+    img = functions.http_cat(code)
+    emb = discord.Embed(description=f"code {code}:")
+    emb.set_image(url=img)
+    await message.channel.send(embed=emb)
+    #except:
+      #await error(message)
     
   
   if msg.startswith("T!type"):

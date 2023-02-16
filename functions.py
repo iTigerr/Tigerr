@@ -80,7 +80,7 @@ def get_user_object(message,input):
         return member
 
 def http_cat(code):
-  return f"https://http.cat/{code}.png"
+  return f"https://http.cat/{code}"
 
 def urban(search):
   try:
